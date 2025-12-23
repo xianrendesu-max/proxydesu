@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Study Proxy</title>
+</head>
+<body>
+  <h2>Study Proxy Client</h2>
+  <input id="url" style="width:80%" placeholder="Allowed URL">
+  <br><br>
+  <button onclick="fetchData()">Fetch</button>
+  <pre id="output"></pre>
+
+  <script>
+    async function fetchData() {
+      const url = document.getElementById("url").value;
+      const res = await fetch(
+        "/proxy?url=" + encodeURIComponent(url),
+        { headers: { "x-api-key": "your-api-key-here" } }
+      );
+      document.getElementById("output").textContent = await res.text();
+    }
+  </script>
+</body>
+</html>
